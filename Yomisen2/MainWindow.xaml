@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Yomisen2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Yomisen2" Height="450" Width="400" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Closed="Window_Closed">
+    <Canvas>
+        <Label Content="Channel ID" Canvas.Left="10"/>
+        <DataGrid x:Name="ChannelIDListGrid" Height="150" Canvas.Left="10" Canvas.Top="31" Width="350" IsSynchronizedWithCurrentItem="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" HorizontalContentAlignment="Center" HeadersVisibility="Column"/>
+        <Label Content="User ID" Canvas.Left="10" Canvas.Top="186"/>
+        <DataGrid x:Name="UserIDListGrid" Height="150" Canvas.Left="10" Canvas.Top="217" Width="350" ScrollViewer.CanContentScroll="True" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False" HeadersVisibility="Column"/>
+        <Button x:Name="ExitButton" Content="終了" Canvas.Left="285" Canvas.Top="372" Width="75" Click="ExitButton_Click"/>
+        <Button x:Name="LogoutButton" Content="ログアウト" Canvas.Left="205" Canvas.Top="372" Width="75" Click="LogoutButton_Click"/>
+    </Canvas>
 </Window>
