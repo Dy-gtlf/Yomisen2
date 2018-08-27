@@ -49,7 +49,13 @@ namespace Yomisen2
             client.MessageReceived += Talk;
 
             // IDリストの読み込み
-            iDList = XMLHelper.Deserialize<IDList>(@"IDList.xml") ?? new IDList();
+            iDList = XMLHelper.Deserialize<IDList>(@"IDList.xml");
+            if (iDList == null)
+            {
+                MessageBox.Show("IDList.xmlが見つかりませんでした。\n新規作成します。");
+                XMLHelper.Serialize("IDList.xml", new IDList());
+                iDList = XMLHelper.Deserialize<IDList>(@"IDList.xml");
+            }
             ChannelIDListGrid.ItemsSource = iDList.ChannelIDList;
             UserIDListGrid.ItemsSource = iDList.UserIDList;
 
