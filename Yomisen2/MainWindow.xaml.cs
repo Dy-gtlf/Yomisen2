@@ -2,19 +2,9 @@
 using Discord.WebSocket;
 using FNF.Utility;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Yomisen2
 {
@@ -74,10 +64,31 @@ namespace Yomisen2
         {
             await Task.Run(() =>
             {
-                // 読み上げ
-                using (var bc = new BouyomiChanClient())
+                // チャンネル一覧に存在するなら
+                foreach (var idInfo in iDList.ChannelIDList)
                 {
-                    bc.AddTalkTask(message.Content);
+                    if (idInfo.ID == message.Channel.Id.ToString())
+                    {
+                        // 読み上げ
+                        using (var bc = new BouyomiChanClient())
+                        {
+                            bc.AddTalkTask(message.Content);
+                        }
+                        return;
+                    }
+                }
+                // ユーザ一覧に存在するなら
+                foreach (var idInfo in iDList.UserIDList)
+                {
+                    if (idInfo.ID == message.Author.Id.ToString())
+                    {
+                        // 読み上げ
+                        using (var bc = new BouyomiChanClient())
+                        {
+                            bc.AddTalkTask(message.Content);
+                        }
+                        return;
+                    }
                 }
             });
         }
